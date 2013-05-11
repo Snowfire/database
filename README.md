@@ -2,11 +2,11 @@
 Database
 ========
 
-Copyright 2012, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
+Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 Licensed under the MIT License.
 Redistributions of files must retain the above copyright notice.
 
-    $database = new Lib\Database(array(
+    $database = new SF\Database(array(
     	'user' => 'user name',
     	'pass' => 'password',
     	'dbname' => 'database name'

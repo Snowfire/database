@@ -1,7 +1,7 @@
 
 ## Nested set model
 
-Copyright 2012, Snowfire AB, snowfireit.com
+Copyright 2013, Snowfire AB, snowfireit.com
 Licensed under the MIT License.
 Redistributions of files must retain the above copyright notice.
 
