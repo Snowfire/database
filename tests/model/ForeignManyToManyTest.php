@@ -1,14 +1,14 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/model/model.php';
+require_once __DIR__ . '/../../lib/model/model.php';
 
-class Products1 extends Lib\Database_Model
+class Products1 extends SF\Database_Model
 {
 	protected static $_table = 'products';
 	protected static $_singular = 'product';
@@ -17,7 +17,7 @@ class Products1 extends Lib\Database_Model
 	);
 }
 
-class Categories1 extends Lib\Database_Model
+class Categories1 extends SF\Database_Model
 {
 	protected static $_table = 'categories';
 	protected static $_singular = 'category';
@@ -35,8 +35,10 @@ class ForeignManyToManyTest extends PHPUnit_Framework_TestCase
 			array('execute', "INSERT INTO products_categories\nSET `product_id` = ?, `category_id` = ?", array(3, 2))
 		), array('debug' => false));
 		
-		$prod_model = new Products1($this->_mock);
-		$cat_model = new Categories1($this->_mock);
+		SF\Database_Model::database($this->_mock);
+		
+		$prod_model = new Products1();
+		$cat_model = new Categories1();
 		
 		$this->assertEquals(
 			3, 
@@ -62,8 +64,10 @@ class ForeignManyToManyTest extends PHPUnit_Framework_TestCase
 			)))
 		), array('debug' => false));
 		
-		$prod_model = new Products1($this->_mock);
-		$cat_model = new Categories1($this->_mock);
+		SF\Database_Model::database($this->_mock);
+		
+		$prod_model = new Products1();
+		$cat_model = new Categories1();
 		
 		$this->assertEquals(
 			array(
@@ -84,8 +88,10 @@ class ForeignManyToManyTest extends PHPUnit_Framework_TestCase
 			array('execute', "DELETE FROM products\nWHERE `id` = ?", array(1))
 		), array('debug' => false));
 		
-		$prod_model = new Products1($this->_mock);
-		$cat_model = new Categories1($this->_mock);
+		SF\Database_Model::database($this->_mock);
+		
+		$prod_model = new Products1();
+		$cat_model = new Categories1();
 		
 		$prod_model->delete(array('id' => 1), array('categories' => $cat_model));
 	}

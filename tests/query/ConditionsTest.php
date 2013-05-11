@@ -1,12 +1,12 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/query/conditions.php';
+require_once __DIR__ . '/../../lib/query/conditions.php';
 
 class ConditionsTest extends PHPUnit_Framework_TestCase
 {
@@ -103,7 +103,7 @@ class ConditionsTest extends PHPUnit_Framework_TestCase
     
     private function _test()
     {
-    	$c = new Lib\Database\Query\Conditions();
+    	$c = new SF\Database\Query\Conditions();
     	
     	$conditions = array_slice(func_get_args(), 0, -1);
     	call_user_func_array(array($c, 'add'), $conditions);

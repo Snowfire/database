@@ -1,12 +1,12 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-namespace Lib;
+namespace SF;
 
 /*require_once 'helper.php';
 require_once 'conditions.php';*/
@@ -408,7 +408,7 @@ class Database_Query
 		$sql = 'UPDATE ' . implode(', ', $this->_parameter('update'));
 		
 		if (isset($this->set)) {
-			$set = \Lib\Database\Query\Assignment::create()
+			$set = \SF\Database\Query\Assignment::create()
 				->set($this->_parameter('set'))
 				->compile();
 			

@@ -1,23 +1,23 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/query/helper.php';
+require_once __DIR__ . '/../../lib/query/helper.php';
 
 class HelperTest extends PHPUnit_Framework_TestCase
 {
     public function testIsAssociative()
     {
         $this->assertFalse(
-        	Lib\Database\Query\Helper::is_associative(array('a', 'b'))
+        	SF\Database\Query\Helper::is_associative(array('a', 'b'))
         );
         
         $this->assertTrue(
-        	Lib\Database\Query\Helper::is_associative(array('a' => 'b'))
+        	SF\Database\Query\Helper::is_associative(array('a' => 'b'))
         );
     }
     
@@ -25,27 +25,27 @@ class HelperTest extends PHPUnit_Framework_TestCase
     {
     	$this->assertEquals(
     		'`column`',
-    		Lib\Database\Query\Helper::quote_column('column')
+    		SF\Database\Query\Helper::quote_column('column')
     	);
     	
     	$this->assertEquals(
     		'table.column',
-    		Lib\Database\Query\Helper::quote_column('table.column')
+    		SF\Database\Query\Helper::quote_column('table.column')
     	);
     	
     	$this->assertEquals(
     		'table.column1, table.column2',
-    		Lib\Database\Query\Helper::quote_column('table.column1, table.column2')
+    		SF\Database\Query\Helper::quote_column('table.column1, table.column2')
     	);
     	
     	$this->assertEquals(
     		'table.column1, table.column2',
-    		Lib\Database\Query\Helper::quote_column('table.column1, table.column2')
+    		SF\Database\Query\Helper::quote_column('table.column1, table.column2')
     	);
     	
     	$this->assertEquals(
     		'table.column',
-    		Lib\Database\Query\Helper::quote_column('table.column', true)
+    		SF\Database\Query\Helper::quote_column('table.column', true)
     	);
     }
     
@@ -56,7 +56,7 @@ class HelperTest extends PHPUnit_Framework_TestCase
     {
 		$this->assertEquals(
     		'table.column1, table.column2',
-    		Lib\Database\Query\Helper::quote_column('table.column1, table.column2', true)
+    		SF\Database\Query\Helper::quote_column('table.column1, table.column2', true)
     	);
     }
 }

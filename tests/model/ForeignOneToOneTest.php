@@ -1,21 +1,21 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/model/model.php';
+require_once __DIR__ . '/../../lib/model/model.php';
 
-class People extends Lib\Database_Model
+class People extends SF\Database_Model
 {
 	protected static $_foreign = array(
 		array('type' => 'one_to_one', 'name' => 'passports')
 	);
 }
 
-class Passports extends Lib\Database_Model
+class Passports extends SF\Database_Model
 {
 	protected static $_singular = 'passport';
 }
@@ -45,8 +45,10 @@ class ForeignOneToOneTest extends PHPUnit_Framework_TestCase
 			)))
 		));
 		
-		$people_model = new People($this->_mock);
-		$passports_model = new Passports($this->_mock);
+		SF\Database_Model::database($this->_mock);
+		
+		$people_model = new People();
+		$passports_model = new Passports();
 		
 		$this->assertEquals(
 			array(
@@ -66,8 +68,10 @@ class ForeignOneToOneTest extends PHPUnit_Framework_TestCase
 			array('execute', "INSERT INTO people\nSET `name` = ?, `passport_id` = ?", array('Name', 1), null, array('inserted_id' => 2))
 		));
 		
-		$people_model = new People($this->_mock);
-		$passports_model = new Passports($this->_mock);
+		SF\Database_Model::database($this->_mock);
+		
+		$people_model = new People();
+		$passports_model = new Passports();
 		
 		$this->assertEquals(2,
 			$people_model->create(array(
@@ -94,8 +98,10 @@ class ForeignOneToOneTest extends PHPUnit_Framework_TestCase
 			array('execute', "DELETE FROM passports\nWHERE `id` IN (?, ?)", array(3, 4))
 		), array('debug' => false));
 		
-		$people_model = new People($this->_mock);
-		$passports_model = new Passports($this->_mock);
+		SF\Database_Model::database($this->_mock);
+		
+		$people_model = new People();
+		$passports_model = new Passports();
 
 		$people_model->delete(array('id' => array(1, 2)), array('passports' => $passports_model));
 	}

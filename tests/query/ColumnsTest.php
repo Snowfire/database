@@ -1,18 +1,18 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/query/columns.php';
+require_once __DIR__ . '/../../lib/query/columns.php';
 
 class ColumnsTest extends PHPUnit_Framework_TestCase
 {
     public function testAsterix()
     {
-    	$c = new Lib\Database\Query\Columns('*');
+    	$c = new SF\Database\Query\Columns('*');
     	$this->assertEquals(
     		'*',
     		$c->sql()
@@ -21,7 +21,7 @@ class ColumnsTest extends PHPUnit_Framework_TestCase
 	
     public function testCreate()
     {
-    	$c = Lib\Database\Query\Columns::create('column');
+    	$c = SF\Database\Query\Columns::create('column');
     	$this->assertEquals(
     		'`column`',
     		$c->sql()
@@ -30,7 +30,7 @@ class ColumnsTest extends PHPUnit_Framework_TestCase
 	
     public function testMixed()
     {
-    	$c = new Lib\Database\Query\Columns();
+    	$c = new SF\Database\Query\Columns();
     	$c->add('table.*');
     	$c->add('NOW() AS `now`');
     	$c->add(array('alias' => 'col', 'alias2' => 'col2'));
@@ -42,7 +42,7 @@ class ColumnsTest extends PHPUnit_Framework_TestCase
 	
     public function testAddMulti()
     {
-    	$c = new Lib\Database\Query\Columns();
+    	$c = new SF\Database\Query\Columns();
     	
     	$c->add(array(
     		'table.*',

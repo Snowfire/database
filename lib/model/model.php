@@ -1,12 +1,12 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-namespace Lib;
+namespace SF;
 
 /**
 * protected static $_required_parameters
@@ -219,7 +219,8 @@ class Database_Model
 
 		foreach ($this->_foreign['many_to_many'] as $foreign) {
 			if (isset($foreign_ids[$foreign['name']])) {
-				$fields = $this->_create_many_to_many($id, $foreign_ids[$foreign['name']], $foreign_models[$foreign['name']]);
+				//$fields = $this->_create_many_to_many($id, $foreign_ids[$foreign['name']], $foreign_models[$foreign['name']]);
+				$this->_create_many_to_many($id, $foreign_ids[$foreign['name']], $foreign_models[$foreign['name']]);
 			}
 		}
 

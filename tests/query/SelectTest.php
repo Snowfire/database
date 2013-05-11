@@ -1,12 +1,12 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once 'MockDatabase.php';
+require_once __DIR__ . '/../MockDatabase.php';
 
 class SelectTest extends PHPUnit_Framework_TestCase
 {
@@ -27,7 +27,7 @@ class SelectTest extends PHPUnit_Framework_TestCase
     		array('ACTIVE', 9, 10), null)
     	));
     	
-        $q = new Lib\Database_Query($db);
+        $q = new SF\Database_Query($db);
         
         // Basic query functionality 
         $q->select()->from('table')->execute();

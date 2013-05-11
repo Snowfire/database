@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
@@ -9,7 +9,7 @@
 class DatabaseTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	* @var \Lib\Database
+	* @var \SF\Database
 	*/
 	private $_db;
 	

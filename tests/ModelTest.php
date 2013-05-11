@@ -1,14 +1,14 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/model/model.php';
+require_once __DIR__ . '/../lib/model/model.php';
 
-class Users extends Lib\Database_Model
+class Users extends SF\Database_Model
 {
 	protected static $_required_parameters = array('account_id');
 	
@@ -40,7 +40,8 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	private function _users_model($expected)
 	{
 		$this->_mock = new Mock_Database($this, $expected);
-		return new Users($this->_mock, array('account_id' => 5));
+		SF\Database_Model::database($this->_mock);
+		return new Users(array('account_id' => 5));
 	}/*
 	
 	private function _base_model($expected)
@@ -66,7 +67,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
     public function testSelect()
     {
     	$users = $this->_users_model(array(
-    		array('one', "SELECT users.*\nFROM users\nWHERE users.account_id = ? AND `id` = ?\nLIMIT 1", array(5, 9))
+    		array('one', "SELECT users.*\nFROM users\nWHERE users.account_id = ? AND `id` = ?\nLIMIT 1", array(5, 9), null)
     	));
     	
     	$users->one(9);

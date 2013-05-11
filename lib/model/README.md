@@ -1,7 +1,7 @@
 
 # Model
 
-Copyright 2012, Snowfire AB, snowfireit.com
+Copyright 2012, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 Licensed under the MIT License.
 Redistributions of files must retain the above copyright notice.
 

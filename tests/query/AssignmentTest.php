@@ -1,18 +1,18 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/query/assignment.php';
+require_once __DIR__ . '/../../lib/query/assignment.php';
 
 class AssignmentTest extends PHPUnit_Framework_TestCase
 {
     public function testMixed()
     {
-    	$c = new Lib\Database\Query\Assignment();
+    	$c = new SF\Database\Query\Assignment();
     	
     	// Different styles
     	$c->set(array(
@@ -33,7 +33,7 @@ class AssignmentTest extends PHPUnit_Framework_TestCase
 	
 	public function testShorter()
 	{
-		$c = new Lib\Database\Query\Assignment();
+		$c = new SF\Database\Query\Assignment();
 		
 		$c->set(array(
     		array('column', 'value'),

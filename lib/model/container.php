@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib;
+namespace SF;
 
 class Database_Model_Container implements \ArrayAccess
 {

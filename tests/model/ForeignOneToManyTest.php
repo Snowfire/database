@@ -1,14 +1,14 @@
 <?php
 
 /**
-* Copyright 2012, Snowfire AB, snowfireit.com
+* Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
 * Licensed under the MIT License.
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once '../library/database/model/model.php';
+require_once __DIR__ . '/../../lib/model/model.php';
 
-class Products extends Lib\Database_Model
+class Products extends SF\Database_Model
 {
 	protected static $_singular = 'product';
 	protected static $_foreign = array(
@@ -16,7 +16,7 @@ class Products extends Lib\Database_Model
 	);
 }
 
-class Products_Options extends Lib\Database_Model
+class Products_Options extends SF\Database_Model
 {
 	protected static $_plural = 'options';
 }
@@ -46,8 +46,10 @@ class ForeignOneToManyTest extends PHPUnit_Framework_TestCase
 			)))
 		));
 		
-		$prod_model = new Products($this->_mock);
-		$opt_model = new Products_Options($this->_mock);
+		SF\Database_Model::database($this->_mock);
+		
+		$prod_model = new Products();
+		$opt_model = new Products_Options();
 		
 		$this->assertEquals(
 			array(
