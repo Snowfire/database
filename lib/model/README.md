@@ -1,4 +1,3 @@
-
 # Model
 
 Copyright 2013, Markus Hedlund <markus@snowfire.net>, Snowfire AB, snowfire.net
@@ -25,7 +24,7 @@ Foreign keys use the foreign singular, and appends `_id`. Everything is lowercas
 
 ## Options
 
-Non of the following options are required.
+None of the following options are required.
 
 	protected static $_table = 'addresses';
 	protected static $_singular = 'address';
