@@ -9,7 +9,7 @@ http://en.wikipedia.org/wiki/Nested_set_model
 
 
 
-## `Database_Model_Nested::create()`
+## `Snowfire\Database\Model\Nested::create()`
 
 If you omit fields `left` and `right`, they will be added automatically. The node will then be added
 next to the (last) root node.
@@ -20,7 +20,7 @@ Use `$field['inside_node']` to make it the first child of that node. Should cont
 
 
 
-## `Database_Model_Nested::parent_path()`
+## `Snowfire\Database\Model\Nested::parent_path()`
 
 Get the path from the node (exclusive) to the node's root (inclusive) as an array.
 
@@ -28,7 +28,7 @@ Get the path from the node (exclusive) to the node's root (inclusive) as an arra
 
 
 
-## `Database_Model_Nested::nested()`
+## `Snowfire\Database\Model\Nested::nested()`
 
 Returns a nested array with `children` keys.
 
@@ -40,6 +40,6 @@ Options:
 
 
 
-## `Database_Model_Nested::import()`
+## `Snowfire\Database\Model\Nested::import()`
 
 Work in progress.

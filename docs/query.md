@@ -19,7 +19,7 @@ To create a query like
 use this code
 
 	$ids = array(1, 2, 3);
-	$query = new Lib\Database_Query($db);
+	$query = new Lib\Database\Query($db);
 	$query->select('id')->from('pages')->where(array(
 		'id' => $ids,
 		'is_active' => 1
@@ -53,8 +53,8 @@ You can easily echo the query.
 
 ## Execute
 
-`Database_Query::execute()` runs the query on the provided database adapter 
-(provided to `Database_Query::__construct()`).
+`Snowfire\Database\Query::execute()` runs the query on the provided database adapter
+(provided to `Snowfire\Database\Query::__construct()`).
 
 `$options` are passed to `Database::many()` and `Database::one()`.
 
@@ -71,7 +71,7 @@ is run. Otherwise `Database::many()` is run, or `Database::execute()` if not a
 
 
 
-### `Database_Query::set()`
+### `Snowfire\Database\Query::set()`
 
 	$query->set('column', 'value');
 	$query->set(array(
@@ -81,7 +81,7 @@ is run. Otherwise `Database::many()` is run, or `Database::execute()` if not a
 
 
 
-### `Database_Query::values()`
+### `Snowfire\Database\Query::values()`
 
 	$query->values(array('first_name' => 'Jason', 'last_name' => 'Bourne'));
 	$query->values(array(
@@ -93,7 +93,7 @@ is run. Otherwise `Database::many()` is run, or `Database::execute()` if not a
 
 
 
-### `Database_Query::where()`
+### `Snowfire\Database\Query::where()`
 
 	$query->where('raw = "query"');
 	$query->where('raw = ?', array('query'));
