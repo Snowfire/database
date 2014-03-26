@@ -1,5 +1,6 @@
 {
     "name": "snowfire/database",
+	"license": "MIT",
     "authors": [
         {
             "name": "Markus Hedlund",
