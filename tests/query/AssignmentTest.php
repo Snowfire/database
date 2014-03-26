@@ -6,13 +6,15 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../../lib/query/assignment.php';
+//require_once __DIR__ . '/../../lib/query/assignment.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+//require_once __DIR__ . '/../MockDatabase.php';
 
 class AssignmentTest extends PHPUnit_Framework_TestCase
 {
     public function testMixed()
     {
-    	$c = new SF\Database\Query\Assignment();
+    	$c = new \Snowfire\Database\Query\Assignment();
     	
     	// Different styles
     	$c->set(array(
@@ -33,7 +35,7 @@ class AssignmentTest extends PHPUnit_Framework_TestCase
 	
 	public function testShorter()
 	{
-		$c = new SF\Database\Query\Assignment();
+		$c = new \Snowfire\Database\Query\Assignment();
 		
 		$c->set(array(
     		array('column', 'value'),

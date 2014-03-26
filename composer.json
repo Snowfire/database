@@ -1,0 +1,17 @@
+{
+    "name": "snowfire/database",
+    "authors": [
+        {
+            "name": "Markus Hedlund",
+            "email": "markus@mimmin.com"
+        }
+    ],
+    "require": {
+
+    },
+	"autoload": {
+		"psr-4": {
+			"Snowfire\\": "lib/"
+		}
+	}
+}

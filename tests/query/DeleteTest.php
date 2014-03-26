@@ -6,6 +6,8 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
+//require_once __DIR__ . '/../MockDatabase.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../MockDatabase.php';
 
 class DeleteTest extends PHPUnit_Framework_TestCase
@@ -16,7 +18,7 @@ class DeleteTest extends PHPUnit_Framework_TestCase
     		array('execute', "DELETE FROM table\nWHERE `column` = ?\nLIMIT 1", array('value'))
     	));
     	
-        $q = new SF\Database_Query($db);
+        $q = new \Snowfire\Database\Query($db);
         $q	->delete('table')
 	        ->where('column', 'value')
 	        ->limit(1)

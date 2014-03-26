@@ -6,9 +6,11 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../../lib/model/model.php';
+//require_once __DIR__ . '/../../lib/model/model.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../MockDatabase.php';
 
-class Products1 extends SF\Database_Model
+class Products1 extends \Snowfire\Database\Model
 {
 	protected static $_table = 'products';
 	protected static $_singular = 'product';
@@ -17,7 +19,7 @@ class Products1 extends SF\Database_Model
 	);
 }
 
-class Categories1 extends SF\Database_Model
+class Categories1 extends \Snowfire\Database\Model
 {
 	protected static $_table = 'categories';
 	protected static $_singular = 'category';
@@ -34,8 +36,8 @@ class ForeignManyToManyTest extends PHPUnit_Framework_TestCase
 			array('execute', "INSERT INTO products_categories\nSET `product_id` = ?, `category_id` = ?", array(3, 1)),
 			array('execute', "INSERT INTO products_categories\nSET `product_id` = ?, `category_id` = ?", array(3, 2))
 		), array('debug' => false));
-		
-		SF\Database_Model::database($this->_mock);
+
+		\Snowfire\Database\Model::database($this->_mock);
 		
 		$prod_model = new Products1();
 		$cat_model = new Categories1();
@@ -63,8 +65,8 @@ class ForeignManyToManyTest extends PHPUnit_Framework_TestCase
 				array('id' => '4')
 			)))
 		), array('debug' => false));
-		
-		SF\Database_Model::database($this->_mock);
+
+		\Snowfire\Database\Model::database($this->_mock);
 		
 		$prod_model = new Products1();
 		$cat_model = new Categories1();
@@ -87,8 +89,8 @@ class ForeignManyToManyTest extends PHPUnit_Framework_TestCase
 			array('execute', "DELETE FROM products_categories\nWHERE `product_id` IN (?)", array(1)),
 			array('execute', "DELETE FROM products\nWHERE `id` = ?", array(1))
 		), array('debug' => false));
-		
-		SF\Database_Model::database($this->_mock);
+
+		\Snowfire\Database\Model::database($this->_mock);
 		
 		$prod_model = new Products1();
 		$cat_model = new Categories1();

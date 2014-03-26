@@ -6,10 +6,10 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../lib/interface.php';
-require_once __DIR__ . '/../lib/query/query.php';
+/*require_once __DIR__ . '/../lib/interface.php';
+require_once __DIR__ . '/../lib/query/query.php';*/
 
-class Mock_Database implements \SF\Database_Interface
+class Mock_Database implements \Snowfire\DatabaseInterface
 {
 	private $_testcase;
 	

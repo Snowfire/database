@@ -1,8 +1,8 @@
 <?php
 
-namespace SF;
+namespace Snowfire\Database\Model;
 
-class Database_Model_Container implements \ArrayAccess
+class Container implements \ArrayAccess
 {
 	private $_storage;
 

@@ -6,9 +6,11 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../lib/model/model.php';
+//require_once __DIR__ . '/../lib/model/model.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/MockDatabase.php';
 
-class Users extends SF\Database_Model
+class Users extends \Snowfire\Database\Model
 {
 	protected static $_required_parameters = array('account_id');
 	
@@ -40,7 +42,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	private function _users_model($expected)
 	{
 		$this->_mock = new Mock_Database($this, $expected);
-		SF\Database_Model::database($this->_mock);
+		\Snowfire\Database\Model::database($this->_mock);
 		return new Users(array('account_id' => 5));
 	}/*
 	

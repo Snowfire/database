@@ -9,7 +9,7 @@
 class DatabaseTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	* @var \SF\Database
+	* @var Snowfire\Database
 	*/
 	private $_db;
 	
@@ -28,7 +28,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
 	{
 		$this->_db->execute("DROP TABLE IF EXISTS `test`");
 	}
-	
+
     public function testLastInsertId()
     {
     	$this->_db->execute('INSERT INTO test SET name = ?', array('Test 3'));
@@ -37,7 +37,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
     	$this->_db->execute('INSERT INTO test SET name = ?', array('Test 4'));
     	$this->assertEquals(4, $this->_db->last_insert_id());
 	}
-	
+
 	public function testOne()
 	{
 		$this->assertEquals(
@@ -50,7 +50,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
 			$this->_db->one('SELECT name FROM test WHERE id = ?', array(2), array('single_column' => true))
 		);
 	}
-	
+
 	public function testMany()
 	{
 		$this->assertEquals(

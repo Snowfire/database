@@ -6,13 +6,15 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../../lib/query/columns.php';
+//require_once __DIR__ . '/../../lib/query/columns.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+//require_once __DIR__ . '/../MockDatabase.php';
 
 class ColumnsTest extends PHPUnit_Framework_TestCase
 {
     public function testAsterix()
     {
-    	$c = new SF\Database\Query\Columns('*');
+    	$c = new \Snowfire\Database\Query\Columns('*');
     	$this->assertEquals(
     		'*',
     		$c->sql()
@@ -21,7 +23,7 @@ class ColumnsTest extends PHPUnit_Framework_TestCase
 	
     public function testCreate()
     {
-    	$c = SF\Database\Query\Columns::create('column');
+    	$c = \Snowfire\Database\Query\Columns::create('column');
     	$this->assertEquals(
     		'`column`',
     		$c->sql()
@@ -30,7 +32,7 @@ class ColumnsTest extends PHPUnit_Framework_TestCase
 	
     public function testMixed()
     {
-    	$c = new SF\Database\Query\Columns();
+    	$c = new \Snowfire\Database\Query\Columns();
     	$c->add('table.*');
     	$c->add('NOW() AS `now`');
     	$c->add(array('alias' => 'col', 'alias2' => 'col2'));
@@ -42,7 +44,7 @@ class ColumnsTest extends PHPUnit_Framework_TestCase
 	
     public function testAddMulti()
     {
-    	$c = new SF\Database\Query\Columns();
+    	$c = new \Snowfire\Database\Query\Columns();
     	
     	$c->add(array(
     		'table.*',

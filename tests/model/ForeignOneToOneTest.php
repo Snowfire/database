@@ -6,16 +6,18 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../../lib/model/model.php';
+//require_once __DIR__ . '/../../lib/model/model.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../MockDatabase.php';
 
-class People extends SF\Database_Model
+class People extends \Snowfire\Database\Model
 {
 	protected static $_foreign = array(
 		array('type' => 'one_to_one', 'name' => 'passports')
 	);
 }
 
-class Passports extends SF\Database_Model
+class Passports extends \Snowfire\Database\Model
 {
 	protected static $_singular = 'passport';
 }
@@ -45,7 +47,7 @@ class ForeignOneToOneTest extends PHPUnit_Framework_TestCase
 			)))
 		));
 		
-		SF\Database_Model::database($this->_mock);
+		\Snowfire\Database\Model::database($this->_mock);
 		
 		$people_model = new People();
 		$passports_model = new Passports();
@@ -68,7 +70,7 @@ class ForeignOneToOneTest extends PHPUnit_Framework_TestCase
 			array('execute', "INSERT INTO people\nSET `name` = ?, `passport_id` = ?", array('Name', 1), null, array('inserted_id' => 2))
 		));
 		
-		SF\Database_Model::database($this->_mock);
+		\Snowfire\Database\Model::database($this->_mock);
 		
 		$people_model = new People();
 		$passports_model = new Passports();
@@ -98,7 +100,7 @@ class ForeignOneToOneTest extends PHPUnit_Framework_TestCase
 			array('execute', "DELETE FROM passports\nWHERE `id` IN (?, ?)", array(3, 4))
 		), array('debug' => false));
 		
-		SF\Database_Model::database($this->_mock);
+		\Snowfire\Database\Model::database($this->_mock);
 		
 		$people_model = new People();
 		$passports_model = new Passports();

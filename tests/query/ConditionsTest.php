@@ -6,7 +6,9 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../../lib/query/conditions.php';
+//require_once __DIR__ . '/../../lib/query/conditions.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+//require_once __DIR__ . '/../MockDatabase.php';
 
 class ConditionsTest extends PHPUnit_Framework_TestCase
 {
@@ -103,7 +105,7 @@ class ConditionsTest extends PHPUnit_Framework_TestCase
     
     private function _test()
     {
-    	$c = new SF\Database\Query\Conditions();
+    	$c = new \Snowfire\Database\Query\Conditions();
     	
     	$conditions = array_slice(func_get_args(), 0, -1);
     	call_user_func_array(array($c, 'add'), $conditions);

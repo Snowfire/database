@@ -6,6 +6,8 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
+//require_once __DIR__ . '/../MockDatabase.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../MockDatabase.php';
 
 class UpdateTest extends PHPUnit_Framework_TestCase
@@ -17,7 +19,7 @@ class UpdateTest extends PHPUnit_Framework_TestCase
     			. "WHERE `column` = ?", array('value', 2, 3, 9))
     	));
     	
-        $q = new SF\Database_Query($db);
+        $q = new \Snowfire\Database\Query($db);
         $q	->update('table')
 	        ->set('column', 'value')
 	        ->set(array(

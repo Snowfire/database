@@ -6,9 +6,11 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
-require_once __DIR__ . '/../../lib/model/model.php';
+//require_once __DIR__ . '/../../lib/model/model.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../MockDatabase.php';
 
-class Products extends SF\Database_Model
+class Products extends \Snowfire\Database\Model
 {
 	protected static $_singular = 'product';
 	protected static $_foreign = array(
@@ -16,7 +18,7 @@ class Products extends SF\Database_Model
 	);
 }
 
-class Products_Options extends SF\Database_Model
+class Products_Options extends \Snowfire\Database\Model
 {
 	protected static $_plural = 'options';
 }
@@ -46,7 +48,7 @@ class ForeignOneToManyTest extends PHPUnit_Framework_TestCase
 			)))
 		));
 		
-		SF\Database_Model::database($this->_mock);
+		\Snowfire\Database\Model::database($this->_mock);
 		
 		$prod_model = new Products();
 		$opt_model = new Products_Options();

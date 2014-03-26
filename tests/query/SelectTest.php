@@ -6,6 +6,8 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
+//require_once __DIR__ . '/../MockDatabase.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../MockDatabase.php';
 
 class SelectTest extends PHPUnit_Framework_TestCase
@@ -27,7 +29,7 @@ class SelectTest extends PHPUnit_Framework_TestCase
     		array('ACTIVE', 9, 10), null)
     	));
     	
-        $q = new SF\Database_Query($db);
+        $q = new \Snowfire\Database\Query($db);
         
         // Basic query functionality 
         $q->select()->from('table')->execute();

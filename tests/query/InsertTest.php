@@ -6,7 +6,9 @@
 * Redistributions of files must retain the above copyright notice.
 */
 
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../MockDatabase.php';
+//require_once __DIR__ . '/../MockDatabase.php';
 
 class InsertTest extends PHPUnit_Framework_TestCase
 {
@@ -16,7 +18,7 @@ class InsertTest extends PHPUnit_Framework_TestCase
     		array('execute', "INSERT INTO table\nSET `column` = ?, `column2` = ?, `column3` = ?", array('value', 2, 3))
     	));
     	
-        $q = new SF\Database_Query($db);
+        $q = new \Snowfire\Database\Query($db);
         $q	->insert('table')
 	        ->set('column', 'value')
 	        ->set(array(
@@ -37,7 +39,7 @@ class InsertTest extends PHPUnit_Framework_TestCase
     		array('execute', "INSERT INTO table\n(`name`, `state`)\nVALUES\n\t(?, ?),\n\t(?, ?)", array('name1', 'state1', 'name2', 'state2'))
     	));
     	
-        $q = new SF\Database_Query($db);
+        $q = new \Snowfire\Database\Query($db);
         $q	->insert('table')
 	        ->values(array(
 	        	array('name' => 'name1', 'state' => 'state1'),
