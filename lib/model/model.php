@@ -52,7 +52,7 @@ class Database_Model
 		$this->_database = &self::$_database_register;
 		$this->_required_parameters = isset($called_class::$_required_parameters) ? $called_class::$_required_parameters : array();
 		$this->_table = $called_class::table();
-		$this->_singular = $called_class::singular();
+		$this->_singular = static::singular();
 		$this->_primary_key = $called_class::primary_key();
 		
 		$missing_required = array_diff($this->_required_parameters, array_keys($parameters));
@@ -147,8 +147,7 @@ class Database_Model
 
 	public static function singular()
 	{
-		$called_class = get_called_class();
-		return isset($called_class::$_singular) ? $called_class::$_singular : null;
+		return isset(static::$_singular) ? static::$_singular : null;
 	}
 
 	public static function primary_key()
@@ -194,6 +193,7 @@ class Database_Model
 		}
 		
 		$foreign_ids = array();
+		$foreign_fields = array();
 		
 		foreach ($this->_foreign['many_to_many'] as $foreign) {
 			if (isset($foreign_models[$foreign['name']])) {
@@ -202,6 +202,17 @@ class Database_Model
 				
 				if (isset($fields[$field_name])) {
 					$foreign_ids[$foreign['name']] = $fields[$field_name];
+					unset($fields[$field_name]);
+				}
+			}
+		}
+		
+		foreach ($this->_foreign['one_to_many'] as $foreign) {
+			if (isset($foreign_models[$foreign['name']])) {
+				$field_name = $foreign_models[$foreign['name']]->plural();
+				
+				if (isset($fields[$field_name])) {
+					$foreign_fields[$field_name] = $fields[$field_name];
 					unset($fields[$field_name]);
 				}
 			}
@@ -221,6 +232,17 @@ class Database_Model
 			if (isset($foreign_ids[$foreign['name']])) {
 				//$fields = $this->_create_many_to_many($id, $foreign_ids[$foreign['name']], $foreign_models[$foreign['name']]);
 				$this->_create_many_to_many($id, $foreign_ids[$foreign['name']], $foreign_models[$foreign['name']]);
+			}
+		}
+		
+		foreach ($this->_foreign['one_to_many'] as $foreign) {
+			if (isset($foreign_models[$foreign['name']])) {
+				$field_name = $foreign_models[$foreign['name']]->plural();
+				
+				foreach ($foreign_fields[$field_name] as $data) {
+					$data["{$this->_singular}_id"] = $id;
+					$foreign_models[$foreign['name']]->create($data);
+				}
 			}
 		}
 

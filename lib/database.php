@@ -79,9 +79,31 @@ class Database implements Database_Interface
 		return $this->_pdo->lastInsertId();
 	}
 	
+	public function build_parameters($parameters, $white_list = null, $separator = ', ')
+	{
+		$sql = array();
+		$values = array();
+		
+		if ($white_list) {
+			$parameters = array_intersect_key($parameters, array_flip($white_list));
+		}
+		
+		foreach ($parameters as $key => $value) {
+			$sql[] = "`{$key}` = ?";
+			$values[] = $value;
+		}
+		
+		return array('sql' => implode($separator, $sql), 'values' => $values);
+	}
+	
 	public function format_date_time($unix)
 	{
 		return date('Y-m-d H:i:s', $unix);
+	}
+  
+	public function format_date($unix)
+	{
+		return date('Y-m-d', $unix);
 	}
 	
 	public function prepare($sql)
