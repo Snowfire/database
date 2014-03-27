@@ -8,7 +8,7 @@
 
 namespace Snowfire;
 
-require_once 'interface.php';
+//require_once 'interface.php';
 
 class Database implements DatabaseInterface
 {
@@ -20,15 +20,19 @@ class Database implements DatabaseInterface
 	private $_pdo;
 	
 	/**
-	* @param array $parameters user, pass, host, dbname
+	* @param array $parameters user, pass, host, dbname, pdo
 	* @return Database
 	*/
 	public function __construct($parameters)
 	{
-		$this->_parameters = array_merge(array(
-			'host' => '127.0.0.1',
-			'port' => 3306
-		), $parameters);
+		if (isset($parameters['pdo'])) {
+			$this->_pdo = $parameters['pdo'];
+		} else {
+			$this->_parameters = array_merge(array(
+				'host' => '127.0.0.1',
+				'port' => 3306
+			), $parameters);
+		}
 	}
 	
 	/**
